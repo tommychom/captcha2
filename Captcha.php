@@ -1,5 +1,6 @@
 <?php
 class Captcha {
+  private $result;
 	private $numberWord = array('Zero','One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine');
 	private $symbol = array('', '+', '*', '-');
 
@@ -7,7 +8,8 @@ class Captcha {
 		$result = $this->calculate($operator, $leftOperand, $rightOperand);
 		$leftOperand = ($pattern == 1) ?  $this->numberWord[$leftOperand] : $leftOperand;
 		$rightOperand = ($pattern == 2) ? $this->numberWord[$rightOperand] : $rightOperand;
-		return sprintf('%s %s %s = %d', $leftOperand, $this->symbol[$operator], $rightOperand, $result);	
+		$this->result = sprintf('%s %s %s = %d', $leftOperand, $this->symbol[$operator], $rightOperand, $result);	
+    return $this->result;
 	}
 
 	private function calculate($operator, $leftOperand, $rightOperand) {
@@ -17,4 +19,8 @@ class Captcha {
 			case 3: return $leftOperand - $rightOperand;
 		}	
 	}
+
+  function toString() {
+    return $this->result;
+  }
 }

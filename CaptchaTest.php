@@ -34,6 +34,10 @@ class CaptchaTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('1 - One = 0',$this->captcha->getCaptcha(2,1,3,1));
 	}
 
+  function testToStringPatternTwoOperatorMinus(){
+    $this->captcha->getCaptcha(2,1,3,1);
+		$this->assertEquals('1 - One = 0', $this->captcha->toString());
+	}
 	// function testGetCaptcha() {
 	// 	$service = new CaptchaService();
 	// 	$captcha = $service->getCaptcha;
